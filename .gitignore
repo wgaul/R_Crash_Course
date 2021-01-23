@@ -1,0 +1,19 @@
+# R specific files
+*.nb.html
+*.RData
+*.Rproj
+old
+.Rproj.user
+
+# image files
+*.jpg
+*.jpeg
+*.svg
+
+# document files 
+*.odt
+*.docx
+*.odp
+
+# data files
+
