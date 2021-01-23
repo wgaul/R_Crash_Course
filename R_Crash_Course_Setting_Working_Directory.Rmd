@@ -1,0 +1,82 @@
+---
+title: "Saving an R script and setting the working directory"
+author: "Willson Gaul"
+date: "1/22/2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+Before you start an analysis in R, you will need to create and save an R script.  An R script is a text file that contains a set of R commands and short comments that briefly explain the commands.  This document presents step-by-step instructions that you should follow before you start a new analysis in R.  
+
+## Step 1 - Create a new folder on your computer
+You can name the new folder anything you want.  Use a name that helps you remember what the folder is for.  You can choose to put this folder anywhere on your computer, but make sure you remember where it is.  For example, I made a new folder called "R_practice", and I put it within my computer's "Documents" folder.  
+
+## Step 2 - Open RStudio
+Hopefully you already installed RStudio on your computer.  Once RStudio is installed, you can open it in the same way you open any other program or app on your computer.  
+
+## Step 3 - Create an R script
+In RStudio, click **File >> New File >> R Script**.  A blank document should appear in your RStudio screen.  This new R script will probably have a default name similar to "*Untitled1*".
+
+## Step 4 - Save your new R script
+Save your new R script with any name you choose.  It is common practice to end the file name with ".R" so that you (and your computer) know that this document contains R code.  To save your R script, click **File >> Save As**.  This will open a window where you can navigate through the folders on your computer.  Navigate to the new folder you created in Step 1 above, and save your R script in that folder.  You should save the script with a new, descriptive file name.  For this example, name your script "*PracticeScript.R*".  If you have successfully saved your script with a new file name, then you should see the new file name displayed on the tab in your RStudio screen.  **Do you see your new file name on the tab in RStudio?**
+
+## Step 5 - Make a brief header at the top of your R script
+On the first line of your R script, type a short comment to explain what the script is for.  Use the `#` symbol at the start of the line so that the computer knows that the line is not R code.  The header lines at the start of my script look like this:
+```{r, echo = T}
+## Practice R Script - learning to set the working directory
+# author: Willson Gaul willson.gaul@ucdconnect.ie
+# date: 21 Jan. 2021
+##
+
+```
+
+
+## Step 6 - Set the working directory
+Setting the working directory tells R where to look for files.  "Directory" is another word for "folder" on a computer.  Basically, you want to tell R what folder your R script is saved in.  Later, you will save your data in this same folder.
+
+There are a few different ways to set the working directory.  You can do it by pointing and clicking in RStudio, or by typing a command into your R script.  
+
+To set the working directory by pointing and clicking in RStudio, click in the Menu bar **Session -> Set Working Directory -> Choose Directory** and then select the folder you created in Step 1.  When you do this, R will run the command in the console.  The command will look something like this (but inside the quotation marks will be the file path to your folder, rather than the file path to my folder on my computer):
+```{r, include = FALSE, echo=TRUE, eval=FALSE}
+setwd("~/Documents/Rworkshop/DataPractice/")
+```
+
+You should copy this command from the console, and paste it into your R script below the header.  Because this is R code that you want the computer to run, you should not use a `#` at the start of the line.  My script looks like this (yours will have a different file path inside the `setwd()` command):
+```{r, echo = T, eval = F}
+## Practice R Script - learning to set the working directory
+# author: Willson Gaul willson.gaul@ucdconnect.iee
+# date: 21 Jan. 2021
+##
+
+setwd("~/Documents/Rworkshop/DataPractice/")
+```
+
+Next time you work on this script in R, you will not need to set the working directory by pointing and clicking.  Instead, you can run that line of code to set the working directory.
+
+## Step 7 - Test yourself
+To make sure you successfully saved an R script in a new folder, lets test whether you can find and open your R script again.  
+
+Pretend it is the end of the day and you are done working.  Close your R script by clicking the "x" in the corner of the script's tab.  Then, close R studio, either by clicking the "x" in the upper corner of the RStudio screen, or by clicking **File >> Quit Session**.
+
+Now, pretend it is the start of a new day, and you are ready to continue working on your data analysis.  Open RStudio.  Because you closed your script (by closing the tab) before you closed RStudio, you should not see your script when you re-start RStudio.  To find and open your script, click **File >> Open File**.  This should open a browsable window.  Navigate to the folder you created in Step 1, and select the script you created in Steps 3 and 4.  This should open your script in RStudio.  **Do you see your script in RStudio, and does it look the same as it did when you closed it?** If so, you can set the working directory by running the first line of your code (the `setwd()` line), and you are ready to continue your analysis.  
+
+If you cannot find your script, or it doesn't look the same, you should go through these steps again, or ask one of us for help.  It is *extremely* important that you are able to save and find R scripts on your computer, so make sure you understand this and can do it before moving on.
+
+## The End
+Congratulations!  You now have an R script saved in a folder dedicated to this data analysis project.  You are ready to move on to saving and loading data.
+
+\newpage
+Here is a brief summary of these steps, which you should follow every time you start an new analysis.
+
+1) Create a folder on your computer for this analysis
+2) Open RStudio
+3) Create a new R script (**File >> New File >> R Script**)
+4) Save your new R script with a descriptive name (**File >> Save As**)
+5) Make a header at the top of your R script (use `#` to write comments in your script)
+6) Set the working directory to the folder that you saved your script in (`setwd("your file path")`), or click **Session >> Set Working Directory >> Choose Directory**)
