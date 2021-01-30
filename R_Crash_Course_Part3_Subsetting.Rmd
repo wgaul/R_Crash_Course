@@ -1,0 +1,194 @@
+---
+title: "R Crash Course - Subsetting and logical tests"
+author:
+- "Willson Gaul"
+- "willson.gaul@ucdconnect.ie"
+date: "January 2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+When working in R, you must break large tasks into smaller steps, and then write code to do each of those steps.  Remember, a computer does one thing at a time, and it does them in order.  Before you write a line of code, write a comment in normal language saying what you want to do.  If you can't say what you want to do in English, you definitely won't be able to say it in R. 
+
+This document starts by giving you each line of code that I ran during the demonstration at the start of the workshop.  You should write each of the lines of code yourself into your own script, run them, and make sure you understand what they do.  Then, starting on step **??** are new tasks but no code to complete them.  However, this document *does* show some output showing what it should look like if you do the task correctly.  You should write comments and code to do these tasks, and make sure your results match the results shown in this document.  
+
+### Key Points
+- write comments for every line
+- break tasks into small steps
+- take a look at the data after every step to make sure it did what you want.
+
+**Before you start these tasks, you should create a new folder on your computer.**  You can name the folder anything you want.  You will save all the files for these practice tasks in your new folder. 
+
+## Practice tasks
+
+### 1) Download and save HEIGHT.CSV (the file is attached to the email I sent you)
+
+### 2) Make and save a new R script.
+
+### 3) Set the working directory (`setwd()` or **Session >> Set Working Directory >> Choose Directory**).  
+```{r}
+# set working directory (your file path will be different from mine)
+setwd("~/Documents/UCD/demonstrating/R_crash_course/practice_tasks/")
+```
+
+### 4) Make a vector of numbers, and call the vector `nums`.  (From now on you should be working in your R script, and writing comments).
+```{r}
+# make a vector of numbers, and name it nums
+# Remember the <- and the = do the same thing so you could also
+# write this line of code as 
+# nums = c(1, 5, 2, 4, 7)
+nums <- c(1, 5, 2, 4, 7)
+```
+### 5) Take a quick look to make sure this did what you want.
+```{r}
+# print nums to the screen to make sure this did what I want
+nums
+```
+### 6) Get the $2^{nd}$ value from nums.  What do you expect to get?
+```{r}
+# get the 2nd value from nums.  I expect to get a 5 printed to the screen.
+nums[2] # square brackets are used for subsetting.  The 2 gives me the 2nd element.
+```
+### 7) Get the $3^{rd}$ and $5^{th}$ values
+```{r}
+# Get the 3rd and 5th values
+nums[c(3, 5)]
+```
+### 8) Get all values from `nums` that are bigger than 3
+```{r}
+# get values bigger than 3 from nums
+nums[nums > 3]
+```
+### 9) Just to demonstrate, lets look at that previous task in more detail, looking at what is happening in the code.  Make sure you understand why each line of code gave that output.  Compare the code and the output to `nums` to make sure it is doing what you expect.  To demonstrate:
+```{r}
+# print nums to the screen so I remember what is in it
+nums
+
+# this will print a bunch of TRUE / FALSE values, one for each element of 
+# nums, showing whether that element is greater than 3
+nums > 3
+
+# I can subset nums using a vector of TRUE / FALSE values
+nums[c(TRUE, FALSE, TRUE, TRUE, FALSE)]
+
+# change one TRUE / FALSE value from above to see what happens.  I will change
+# the first value from TRUE to FALSE
+nums[c(FALSE, FALSE, TRUE, TRUE, FALSE)]
+
+# instead of writing the TRUE / FALSE values out myself, I can put a logical
+# test inside the square brackets.  The logical test makes a vector of 
+# TRUE/FALSE values that are used to subset nums.
+nums[nums > 3]
+```
+
+### 10) Read in the data from HEIGHT.CSV
+```{r}
+# read in the height data
+height <- read.csv("HEIGHT.CSV")
+```
+
+### 11) take a look to make sure the data look ok
+```{r}
+# look at the first few rows of the height data
+head(height)
+
+# look at the number of rows and columns, and the data types of each column
+str(height)
+
+# look at some summary statistics to make sure the values are reasonable
+# (i.e. no negative or super big height values)
+summary(height)
+```
+
+### 12) Get the $1^{st}$ row of the `height` data frame
+Remember, when subsetting a data frame using square brackets, the first position indicates the rows, then there is a comma, and the second position indicates the columns ( `my_data[rows, columns]` ).  Leaving a position blank (or with a space) gives ALL the elements.
+```{r}
+# get the 1st row (and all columns) of the height data frame.  
+height[1, ] # leave a space after the comma to get all columns
+```
+
+### 13) Get the $2^{nd}$ column (all rows)
+```{r}
+# get the 2nd column from the height data frame
+height[ , 2] # leave a blank space before the comma to get all rows
+```
+Yikes!  That's a lot of F and M values.  But that seems right, my data frame should have 2298 rows (based on step 11 above), so when I ask for all of the $2^{nd}$ column, I should expect 2298 F and M values, which is what I got.
+
+### 14) Get rows 3 and 4, all columns
+```{r}
+# get rows 3 and 4, all columns
+height[c(3, 4), ] 
+```
+
+### 15) Get rows 3 and 4, columns 1 and 6
+```{r}
+# get rows 3 and 4, columns 1 and 6
+height[c(3, 4), c(1, 6)]
+```
+
+### 16) Get data only for females, and save it as a new object
+```{r}
+# get data for females and save it as a new object
+# 
+# I am going to write that comment again, but closer to "computer talk" by
+# spelling the column name and the value representing females precisely:
+# 
+# get rows for which the SEX column has a value of F
+f_heights <- height[height$SEX == "F", ] 
+```
+
+### 17) Take a look to make sure this did what I want
+```{r}
+# look at the first few rows
+head(f_heights)
+# Check to make sure there are fewer rows (because I expect to no longer have
+# rows for males)
+str(f_heights)
+# look at summary statistics.  I should see no "M" values for the SEX column.
+summary(f_heights)
+```
+
+### 18) Get data for males who wear contacts (but do not wear glasses).
+I will not give you the code for this.  You should write the code yourself, and then make sure your results match what is shown below.  To start, break this up into two steps:
+```{r, echo = F}
+# get data only for males, and save as a new object
+m_heights <- height[height$SEX == "M", ]
+mc <- m_heights[m_heights$GLASSES == "CONTACTS", ]
+```
+
+a) get data only for males, and save it as a new object.  This should give you a data frame with `r nrow(m_heights)` rows and `r ncol(m_heights)` columns (check to make sure that is what you got).
+b) subset the males-only data to get only data for people who wear contacts.  This should give you a data frame with `r nrow(mc)` rows and `r ncol(mc)` columns.  The mean age of males who wear contacts should be `r mean(mc$AGE, na.rm = T)`, the mean height should be `r mean(mc$HEIGHT, na.rm = T)`, and the mean weight should be `r mean(mc$WEIGHT, na.rm = T)`.  (Hint: if you use the `mean()` function to calculate the mean, make sure to use the argument `na.rm = TRUE` to exclude missing (NA) values. So the code would look something like this: `mean(male_ht$HEIGHT, na.rm = TRUE)`).
+
+### 19) Find the mean height of females who wear neither glasses nor contacts.  
+```{r, echo = F}
+# subset to females who wear neither glasses nor contacts
+f_neither <- height[height$SEX == "F" & height$GLASSES == "NEITHER", ]
+```
+
+Break this up into small steps, and write comments describing what you are doing in each step.
+
+The mean height of females who wear neither glasses nor contacts should be `r mean(f_neither$HEIGHT, na.rm = T)`.
+
+### 20) How many males aged 26 or older wear glasses but not contacts?
+```{r}
+old_men_with_glasses <- height[height$SEX == "M" & height$AGE >= 26 & 
+                                 height$GLASSES == "GLASSES", ]
+```
+
+There `r nrow(old_men_with_glasses)` males aged 26 or older who wear glasses but not contacts.  
+
+
+
+## Summary & Important Points
+
+- Work in small steps.  Save intermediate results as objects.
+- Make tests that will give you TRUE/FALSE vectors, and use those vectors to subset your data.
+- To subset data frames, use code similar to: `my_data[rows, columns]`
+- Leaving a blank space in the above syntax gives you *all* rows or columns.
+
+
+
