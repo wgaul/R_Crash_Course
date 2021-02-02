@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introduction
 When working in R, you must break large tasks into smaller steps, and then write code to do each of those steps.  Remember, a computer does one thing at a time, and it does them in order.  Before you write a line of code, write a comment in normal language saying what you want to do.  If you can't say what you want to do in English, you definitely won't be able to say it in R. 
 
-This document starts by giving you each line of code that I ran during the demonstration at the start of the workshop.  You should write each of the lines of code yourself into your own script, run them, and make sure you understand what they do.  Then, starting on step **??** are new tasks but no code to complete them.  However, this document *does* show some output showing what it should look like if you do the task correctly.  You should write comments and code to do these tasks, and make sure your results match the results shown in this document.  
+This document starts by giving you each line of code that I ran during the demonstration at the start of the workshop.  You should write each of the lines of code yourself into your own script, run them, and make sure you understand what they do.  Then, starting on step 18 are new tasks but no code to complete them.  However, this document *does* show some output showing what it should look like if you do the task correctly.  You should write comments and code to do these tasks, and make sure your results match the results shown in this document.  
 
 ### Key Points
 - write comments for every line
@@ -161,7 +161,7 @@ mc <- m_heights[m_heights$GLASSES == "CONTACTS", ]
 ```
 
 a) get data only for males, and save it as a new object.  This should give you a data frame with `r nrow(m_heights)` rows and `r ncol(m_heights)` columns (check to make sure that is what you got).
-b) subset the males-only data to get only data for people who wear contacts.  This should give you a data frame with `r nrow(mc)` rows and `r ncol(mc)` columns.  The mean age of males who wear contacts should be `r mean(mc$AGE, na.rm = T)`, the mean height should be `r mean(mc$HEIGHT, na.rm = T)`, and the mean weight should be `r mean(mc$WEIGHT, na.rm = T)`.  (Hint: if you use the `mean()` function to calculate the mean, make sure to use the argument `na.rm = TRUE` to exclude missing (NA) values. So the code would look something like this: `mean(male_ht$HEIGHT, na.rm = TRUE)`).
+b) subset the males-only data to get only data for males who wear contacts.  This should give you a data frame with `r nrow(mc)` rows and `r ncol(mc)` columns.  The mean age of males who wear contacts should be `r mean(mc$AGE, na.rm = T)`, the mean height should be `r mean(mc$HEIGHT, na.rm = T)`, and the mean weight should be `r mean(mc$WEIGHT, na.rm = T)`.  (Hint: if you use the `mean()` function to calculate the mean, make sure to use the argument `na.rm = TRUE` to exclude missing (NA) values. So the code would look something like this: `mean(male_ht$HEIGHT, na.rm = TRUE)`).
 
 ### 19) Find the mean height of females who wear neither glasses nor contacts.  
 ```{r, echo = F}
@@ -174,7 +174,7 @@ Break this up into small steps, and write comments describing what you are doing
 The mean height of females who wear neither glasses nor contacts should be `r mean(f_neither$HEIGHT, na.rm = T)`.
 
 ### 20) How many males aged 26 or older wear glasses but not contacts?
-```{r}
+```{r, echo = F}
 old_men_with_glasses <- height[height$SEX == "M" & height$AGE >= 26 & 
                                  height$GLASSES == "GLASSES", ]
 ```
@@ -187,7 +187,7 @@ There `r nrow(old_men_with_glasses)` males aged 26 or older who wear glasses but
 
 - Work in small steps.  Save intermediate results as objects.
 - Make tests that will give you TRUE/FALSE vectors, and use those vectors to subset your data.
-- To subset data frames, use code similar to: `my_data[rows, columns]`
+- When using square brackets to subset data frames, use code similar to: `my_data[rows, columns]` (you can also subset data using the `subset()` function)
 - Leaving a blank space in the above syntax gives you *all* rows or columns.
 
 

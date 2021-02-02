@@ -57,7 +57,7 @@ head(traffic_data)
 ```{r, echo = F, include = F}
 plant_df <- read.table("plant.txt", header = TRUE, sep = "")
 ```
-5) How many rows and columns are there in the data that you read into R? Use `str()` or `dim()`.  You should find **`r nrow(plant_df)` rows** and **`r ncol(plant_df)` columns**.  If you do not have `r nrow(plant_df)` rows and `r ncol(plant_df)` columns, try changing how you read in the data so you get the correct number of rows and columns.  Aks for help if you need it.
+5) How many rows and columns are there in the data that you read into R? Use `str()` or `dim()`.  You should find **`r nrow(plant_df)` rows** and **`r ncol(plant_df)` columns**.  If you do not have `r nrow(plant_df)` rows and `r ncol(plant_df)` columns, try changing how you read in the data so you get the correct number of rows and columns.  Ask for help if you need it.
 6) What are the names of the columns?  Modify the following line of code so that it uses the name of your data frame, and then paste the code into your R script and run it:
 ```{r, echo = T, eval=F}
 colnames(plant_df)
